@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
-
     public EntityManagerFactory entityManagerFactory;
 
     public UserDaoImp() {
@@ -27,7 +26,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<User> allU() {
+    public List<User> getAllUsers() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             TypedQuery<User> query = entityManager.createQuery("FROM User", User.class);
@@ -38,7 +37,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void addU(User user) {
+    public void addUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(user);
@@ -47,7 +46,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void deleteU(User user) {
+    public void deleteUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.remove(entityManager.contains(user) ? user : entityManager.merge(user));
@@ -56,7 +55,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void editU(User user) {
+    public void editUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.merge(user);
@@ -65,7 +64,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getByIdU(Long id) {
+    public User getUserById(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u WHERE u.id = :id", User.class);

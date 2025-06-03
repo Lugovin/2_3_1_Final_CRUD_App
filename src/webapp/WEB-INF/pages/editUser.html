@@ -12,20 +12,29 @@
 
 
 <form th:action="@{/editUser}"
-      th:object="${userForm}" method="POST">
-    NEW First Name:
-    <input type="text" th:field="*{firstName}"/>
+      th:object="${user}" method="POST">
+
+    <input type="hidden" th:field="*{id}"/>
+    CHANGE First Name:
+    <input type="text" th:field="*{name}"/>
     <br/>
     <br/>
-    NEW Last Name:
+    CHANGE Last Name:
     <input type="text" th:field="*{lastName}"/>
     <br/>
     <br/>
-    NEW Email:
+    CHANGE Email:
     <input type="text" th:field="*{email}"/>
     <br/>
     <br/>
     <input type="submit" value="EDIT"/>
 </form>
+
+
+<!-- Check if errorMessage is not null and not empty -->
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;">
+</div>
 </body>
 </html>
